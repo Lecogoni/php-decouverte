@@ -12,13 +12,18 @@
 
 <?php
 
-$path = $_GET["path"];
 
-var_dump($path);
+//$dir1    = "/var/log/";
 
-$dir1    = "/var/log/";
-$dir    = "/var/log";
-$explorer = scandir($dir);
+$dir    = "/var/log/";
+$directories = scandir($dir);
+
+if (isset($_GET["path"])) {
+  var_dump(strtolower($dir . $_GET["path"]));
+} else {
+  var_dump("empty");
+}
+
 
 
 ?>
@@ -40,16 +45,16 @@ $explorer = scandir($dir);
       </div>
 
 
-      <? foreach ($explorer as $file) : ?>
-        <? if (!($file == '.' or $file == '..')) {
-          if (is_dir($dir . $file)) {
+      <? foreach ($directories as $directory) : ?>
+        <? if (!($directory == '.' or $directory == '..')) {
+          if (is_dir($dir . $directory)) {
         ?>
             <!-- IF FOLDER -->
             <div class="col-2  mb-4">
-              <a href="http://0.0.0.0:2022/explore.php/?path=/<?= $file ?>">
+              <a href="./explore.php?path=<?= $directory ?>/">
                 <div class="card p-3">
                   <div><img src="./assets/folder.png" class="rounded mx-auto d-block" alt="" style="width: 50px; height:auto;"></div>
-                  <div class="text-center"><?= $file ?></div>
+                  <div class="text-center"><?= $directory ?></div>
                 </div>
               </a>
             </div>
@@ -60,12 +65,12 @@ $explorer = scandir($dir);
           ?>
             <!-- IF FILES -->
             <div class="col-2 mb-4">
-              <a href="#">
-                <div class="card p-3">
-                  <div><img src="./assets/files.png" class="rounded mx-auto d-block" alt="" style="width: 50px; height:auto;"></div>
-                  <div class="text-center"><?= $file ?></div>
-                </div>
-              </a>
+              <!-- <a href="#"> -->
+              <div class="card p-3">
+                <div><img src="./assets/files.png" class="rounded mx-auto d-block" alt="" style="width: 50px; height:auto;"></div>
+                <div class="text-center"><?= $directory ?></div>
+              </div>
+              <!-- </a> -->
             </div>
         <?php
           }
