@@ -1,21 +1,5 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<?php include_once("./functions/rendering-navbar.php") ?>
 
-<?php
-$dir    = './content';
-$files = scandir($dir);
-// unset($files[1]);
-// unset($files[0]);
-
-//print_r($files);
-?>
-
-
-<!-- <?php foreach ($files as $file) : ?>
-  <?php
-        if (!($file == "." || $file == "..")) {
-          print_r(substr($file, 0, -4));
-        } ?>
-<?php endforeach; ?> -->
 
 
 <nav class="bg-gray-800">
@@ -25,23 +9,10 @@ $files = scandir($dir);
         <!-- Mobile menu button-->
         <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
-          <!--
-            Icon when menu is closed.
 
-            Heroicon name: outline/menu
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
           <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <!--
-            Icon when menu is open.
-
-            Heroicon name: outline/x
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
           <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -54,15 +25,11 @@ $files = scandir($dir);
         </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
-            <?php foreach ($files as $file) : ?>
-              <?php if (!($file == "." || $file == "..")) {
-                if (strtolower($_GET["page"]) == substr($file, 0, -4)) { ?>
-                  <a href="./?page=<?= substr($file, 0, -4) ?>" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page"><?= substr($file, 0, -4) ?></a>
-                <?php } else { ?>
-                  <a href="./?page=<?= substr($file, 0, -4) ?>" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"><?= substr($file, 0, -4) ?></a>
-              <?php }
-              } ?>
+            <!-- Display navbar items coming from content/ folder -->
+            <?php foreach (getContentFolderFiles() as $file) : ?>
+              <?php displayNavbarItemsDesktop($file); ?>
             <?php endforeach; ?>
+
           </div>
         </div>
       </div>
@@ -81,17 +48,11 @@ $files = scandir($dir);
   <!-- Mobile menu, show/hide based on menu state. -->
   <div class="sm:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
-      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
-      <?php foreach ($files as $file) : ?>
-        <?php if (!($file == "." || $file == "..")) {
-          if (strtolower($_GET["page"]) == substr($file, 0, -4)) { ?>
-            <a href="./?page=<?= substr($file, 0, -4) ?>" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page"><?= substr($file, 0, -4) ?></a>
-          <?php } else { ?>
-            <a href="./?page=<?= substr($file, 0, -4) ?>" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"><?= substr($file, 0, -4) ?></a>
-        <?php }
-        } ?>
+      <?php foreach (getContentFolderFiles() as $file) : ?>
+        <?php displayNavbarItemsMobile($file); ?>
       <?php endforeach; ?>
+
     </div>
   </div>
 </nav>
