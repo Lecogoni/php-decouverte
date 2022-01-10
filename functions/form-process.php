@@ -22,32 +22,18 @@ $messages = [
     "message" => "le message de merde de micro"
   )
 ];
+$newMessage = json_encode($message);
 
 
-/**
- * if key sessionMessage do not exist in superglobal $_SESSION define it as empty []
- */
-if(!(isset($_SESSION['sessionMessage']))) $_SESSION['sessionMessage'] = [];
+// setcookie('user_id', $newMessage, time() + 50000000000);
+// setcookie('user_name', 'dark_theme', time() + 5000000000);
+// setcookie('pref', 'dark');
+
+exit;
 
 
-
-/**
- * if $message exist / if there is a new message push it in my session, key sessionMessage
- */
-if(isset($message)) array_push($_SESSION['sessionMessage'], $message);
-
-//var_dump($_SESSION['sessionMessage']);
-
-/**
- * Iterate of local store $message and push each message in 
- * $_SESSION key sessionMessage
- */
-// foreach ($messages as $Message){
-//   array_push($_SESSION['sessionMessage'], $Message);
-// }
 
 $newLocation = "http://0.0.0.0:2022?page=message";
-header ("Location: " . $newLocation);
-exit;
+header ("Location: http://0.0.0.0:2022?page=message");
 
 ?>

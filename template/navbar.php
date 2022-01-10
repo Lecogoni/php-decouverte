@@ -30,6 +30,16 @@
               <?php displayNavbarItemsDesktop($file); ?>
             <?php endforeach; ?>
 
+            <?php if (isset($_COOKIE['userLog']) and $_COOKIE['userLog'] == 1) : ?>
+              <a href="./profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+            <?php endif ?>
+
+            <?php if (isset($_COOKIE['userLog']) and $_COOKIE['userLog'] == 1) : ?>
+              <a href="http://0.0.0.0:2022/functions/authentification.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>
+            <?php else : ?>
+              <a href="http://0.0.0.0:2022/functions/login.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log in</a>
+            <?php endif ?>
+
           </div>
         </div>
       </div>
@@ -52,6 +62,18 @@
       <?php foreach (getContentFolderFiles() as $file) : ?>
         <?php displayNavbarItemsMobile($file); ?>
       <?php endforeach; ?>
+
+
+      <?php if (isset($_COOKIE['userLog']) and $_COOKIE['userLog'] == 1) : ?>
+        <a href="./profile.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Profile</a>
+      <?php endif ?>
+
+      <?php if (isset($_COOKIE['userLog']) and $_COOKIE['userLog'] == 1) : ?>
+        <a href="http://0.0.0.0:2022/?page=login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log in</a>
+      <?php else : ?>
+        <a href="./" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log out</a>
+      <?php endif ?>
+      
 
     </div>
   </div>

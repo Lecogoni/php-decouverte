@@ -14,25 +14,21 @@
 <body>
 
   <?php include("./template/navbar.php") ?>
-
-  <?php
-
-  if (isset($_GET["page"])) {
-    $content = strtolower($_GET["page"]);
-  } else {
-    $content = "home";
-  }
-
-  $path = "./content/" . $content . ".php";
-
-  if (is_file($path)) {
-    include($path);
-  } else {
-    echo '404';
-  }
-
-  ?>
-
+  
+  <div class="container mt-5">
+  <form action="http://0.0.0.0:2022/functions/authentification.php" method="POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else. nico@nico.fr</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password"  class="form-control" id="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
 
   <?php include("./template/footer.php") ?>
 
