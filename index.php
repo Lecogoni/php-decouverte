@@ -1,3 +1,9 @@
+<?php
+  session_start();
+
+  $_SESSION['toto'] = 'tutu'
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 

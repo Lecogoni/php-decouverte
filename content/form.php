@@ -6,7 +6,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
 
           <div class="mt-5 md:mt-0 md:col-span-2">
-            <form action="http://0.0.0.0:2022/?page=message" method="POST">
+            <form action="http://0.0.0.0:2022/functions/form-process.php" method="POST">
               <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                   <div class="grid grid-cols-6 gap-6">
@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="col-span-6">
-                      <label for="messages" class="block text-sm font-medium text-gray-700">Messages</label>
-                      <input type="text" name="messages" id="messages" autocomplete="messages" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                      <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                      <input type="text" name="message" id="message" autocomplete="message" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
 
                     <div class="col-span-6 sm:col-span-6 lg:col-span-2">
