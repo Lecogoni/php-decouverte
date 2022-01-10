@@ -1,53 +1,5 @@
 <?php
 
-if (isset($_GET["a"])) {
-  $a = $_POST["a"];
-  echo $a;
-}
-
-
-/**
- * define $variable with POST form data if $_POST exist
- */
-if (isset($_POST['email-address']) and isset($_POST['message'])){
-  $message = array(
-    "email" => $_POST['email-address'],
-    "message" => $_POST['message'],
-  );
-}
-
-// Local storage of some messages
-$messages = [
-  array(
-    "email" => "machin@truc.bd",
-    "message" => "le super message de machin"
-  ),
-  array(
-    "email" => "micro@loge.db",
-    "message" => "le message de merde de micro"
-  )
-];
-
-
-/**
- * if key sessionMessage do not exist in superglobal $_SESSION define it as empty []
- */
-if(!(isset($_SESSION['sessionMessage']))) $_SESSION['sessionMessage'] = [];
-
-/**
- * if $message exist / if there is a new message push it in my session, key sessionMessage
- */
-if(isset($message)) array_push($_SESSION['sessionMessage'], $message);
-
-
-/**
- * Iterate of my *_SESSION key sessionMessage and push each message in 
- * my local storage $messages
- */
-foreach ($_SESSION['sessionMessage'] as $newMessage){
-  array_push($messages, $newMessage);
-}
-
 
 ?>
 
@@ -77,7 +29,7 @@ foreach ($_SESSION['sessionMessage'] as $newMessage){
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
 
-              <?php foreach ($messages as $message) : ?>
+              <?php foreach ($_SESSION['sessionMessage'] as $message) : ?>
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">

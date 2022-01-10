@@ -1,5 +1,4 @@
 <?php 
-
 session_start();
 
 /**
@@ -31,22 +30,24 @@ $messages = [
 if(!(isset($_SESSION['sessionMessage']))) $_SESSION['sessionMessage'] = [];
 
 
+
 /**
  * if $message exist / if there is a new message push it in my session, key sessionMessage
  */
 if(isset($message)) array_push($_SESSION['sessionMessage'], $message);
 
+//var_dump($_SESSION['sessionMessage']);
 
 /**
- * Iterate of my *_SESSION key sessionMessage and push each message in 
- * my local storage $messages
+ * Iterate of local store $message and push each message in 
+ * $_SESSION key sessionMessage
  */
-foreach ($_SESSION['sessionMessage'] as $newMessage){
-  array_push($messages, $newMessage);
-}
+// foreach ($messages as $Message){
+//   array_push($_SESSION['sessionMessage'], $Message);
+// }
 
 $newLocation = "http://0.0.0.0:2022?page=message";
-header ("Location: $newLocation");
+header ("Location: " . $newLocation);
 exit;
 
 ?>
