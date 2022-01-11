@@ -32,8 +32,6 @@ $newMessage = json_encode($message);
 exit;
 
 
-
-$newLocation = "http://0.0.0.0:2022?page=message";
-header ("Location: http://0.0.0.0:2022?page=message");
+header ("Location: " . $_SERVER["HTTP_ORIGIN"] . "?page=message");
 
 ?>

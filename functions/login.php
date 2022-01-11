@@ -1,3 +1,4 @@
+<?php $url =  $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER['HTTP_HOST'] . "/functions/authentification.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,7 +17,7 @@
   <?php include("./template/navbar.php") ?>
   
   <div class="container mt-5">
-  <form action="http://0.0.0.0:2022/functions/authentification.php" method="POST">
+  <form action=" <?= $url ?>" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label">Email address</label>
       <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">

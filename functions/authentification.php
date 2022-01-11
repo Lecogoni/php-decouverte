@@ -11,6 +11,9 @@ $users = [
   )
 ];
 
+$url =  $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER['HTTP_HOST'];
+
+
 // login
 if (!(isset($_COOKIE['userLog'])) or $_COOKIE['userLog'] == 0) {
 
@@ -33,20 +36,20 @@ if (!(isset($_COOKIE['userLog'])) or $_COOKIE['userLog'] == 0) {
       $isLog = true;
       break;
     }
-  }
+  };
   
   if ($isLog == true){
     session_start();
     $_COOKIE['userLog'] = true;
     setcookie('userLog', true, time() + 60 * 60 * 24, "/");
-    header ("Location: http://0.0.0.0:2022/");
+    header ("Location: " . $url );
   } else {
-    header ("Location: http://0.0.0.0:2022/?page=login");
+    header ("Location: " . $url . "/?page=login");
   }
 //  log out
 } else {
   setcookie('userLog', false, time() - 60 * 60 * 24, "/");
-  header ("Location: http://0.0.0.0:2022/");
+  header ("Location: " . $url ."/");
 }
 
 
